@@ -1,0 +1,32 @@
+h1 {
+    text-align: center;
+    text-shadow: 1px 1px 1px #ff0000;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;    
+    flex-direction: column;
+}
+
+
+
+.游戏桌面{
+    border-style: outset;
+    border-width: 5px;
+    border-color:dimgray;
+    border-radius: 10px;  
+}
+
+.Gezi{
+    border-style: outset;
+    border-width: 3px;
+    border-color: #696969;
+    width: 1em;
+    height: 1em;
+
+}
