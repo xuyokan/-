@@ -41,3 +41,15 @@ body {
     border-color: #e0dddd;
     background-color: #e0dddd;
 }
+
+.Gezi.雷.explode{
+    background-color:red;
+}
+
+.Gezi.雷{
+    background-color: sandybrown;
+}
+
+.Gezi.雷.成功{
+    background-color: seagreen;
+}
