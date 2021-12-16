@@ -28,10 +28,16 @@ body {
     border-style: outset;
     border-width: 4px;
     border-color: #d4d3d3;
-    background-color: #e0dddd;
+    background-color: #c2c2c2;
     width: 1em;
     height: 1em;
     text-align: center;
     user-select: none;
 
+}
+
+.clear{
+    border-style: solid;
+    border-color: #e0dddd;
+    background-color: #e0dddd;
 }
