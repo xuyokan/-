@@ -2,11 +2,12 @@ h1 {
     text-align: center;
     text-shadow: 1px 1px 1px #ff0000;
     user-select: none;
+    margin: 0px;
 }
 
 body {
     width: 100vw;
-    height: 80vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,7 +15,11 @@ body {
     flex-direction: column;
 }
 
-
+p{
+    margin: 0;
+    margin-top: 1em;
+    user-select: none;
+}
 
 .游戏桌面{
     border-style: outset;
@@ -52,4 +57,20 @@ body {
 
 .Gezi.雷.成功{
     background-color: seagreen;
+}
+
+
+.难度{
+    height: 1em;
+    text-decoration: underline;
+    padding: 20px 10px;
+    user-select: none;
+    
+}
+
+.初始化{
+    user-select: none;
+    margin-top: 0.5em;
+    background-color: #f1baba;
+    border-radius: 9px;
 }

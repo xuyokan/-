@@ -1,5 +1,76 @@
 
 
+function chushi(){
+    let shuaxin=document.querySelector("#刷新");
+    let tr=document.createElement("tr");
+    let td=document.createElement("td");
+    let Shuaxin=document.createElement("div");
+    Shuaxin.className=("刷新div");
+    Shuaxin.innerText=("初始化");
+    td.append(Shuaxin);
+    tr.append(td);
+    shuaxin.append(tr);
+    Shuaxin.addEventListener("click",(e)=>{
+        location.reload();
+    })
+    
+}
+
+
+function nanduxuanzeEl(){
+    let nanduxuanzeEl=document.querySelector("#nanduxuanze");
+    let trEl=document.createElement("tr");
+        
+    let tdE1=document.createElement("td");
+    let nandu1=document.createElement("div");
+    nandu1.className=("难度");
+    nandu1.innerText=("简单");
+    tdE1.append(nandu1);
+
+    let tdE2=document.createElement("td");
+    let nandu2=document.createElement("div");
+    nandu2.className=("难度");
+    nandu2.innerText=("中级");
+    tdE2.append(nandu2);
+
+    let tdE3=document.createElement("td");
+    let nandu3=document.createElement("div");
+    nandu3.className=("难度");
+    nandu3.innerText=("高级");
+    tdE3.append(nandu3);
+
+    trEl.append(tdE1);
+    trEl.append(tdE2);
+    trEl.append(tdE3);
+        
+    nanduxuanzeEl.append(trEl);
+
+    nandu1.addEventListener("click",(e)=>{
+        grid=0;
+        let grid=Chushihua(9,9,10);
+        renderBoard(9,9,grid);
+            
+    })
+
+    nandu2.addEventListener("click",(e)=>{
+        grid=0;
+        let grid=Chushihua(15,15,25);
+        renderBoard(15,15,grid);
+            
+    })
+
+    nandu3.addEventListener("click",(e)=>{
+        grid=0;
+        let grid=Chushihua(20,20,50);
+        renderBoard(20,20,grid);
+        
+    })
+}
+
+
+
+
+
 function renderBoard(NumRows,NumCols,grid){                               //行数，列数，初始化的棋盘
     let boardElement=document.querySelector("#board");//扫雷棋盘
     
@@ -62,7 +133,7 @@ const directions=[
 
 
 function Chushihua(NumRows,NumCols,NumLei){
-    let grid=new Array(NumRows);              
+    let grid=new Array(NumRows);              //列表
     
     for (let i=0; i < NumRows; i++) {
         grid[i]=new Array(NumCols);
@@ -158,7 +229,9 @@ function checkAllClear(grid){
 
         }
     }
+    alert("YOU WIN!");
     return true;
+    
 }
 
 
@@ -202,11 +275,9 @@ function explode(grid,row,col,NumRows,NumCols){
             }
         }
     }
-
+    alert("YOU LOSE!!!");
 
 }
 
-
-let grid=Chushihua(9,9,1);
-
-renderBoard(9,9,grid);
+nanduxuanzeEl();
+chushi();
