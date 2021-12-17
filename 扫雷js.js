@@ -120,7 +120,7 @@ function renderBoard(NumRows,NumCols,grid){                               //行�
                 if (grid[i][j].leicount===0){
                     searchClearArea(grid,i,j,NumRows,NumCols);                   //搜索当前点击点i,j周围的安全区域
 
-                }else if(grid[i][j].leicount>0 && grid[i][j].leicount !==grid[i][j].biaocount){
+                }else if(grid[i][j].leicount>0 && !grid[i][j].clear){
                     grid[i][j].clear=true;
                     Gezi.classList.add("clear");
                     grid[i][j].Gezi.innerText=grid[i][j].leicount;
@@ -282,10 +282,14 @@ function explode1(grid,row,col,NumRows,NumCols){
             continue;  
         }                                             //跳出边框
         let gridsearch=grid[Gezirow][Gezicol];
+        gridsearch.clear=true;
         if (!gridsearch.truelei ){
             gridsearch.Gezi.classList.add("clear");
-            if (gridsearch.leicount > 0){
-                gridsearch.Gezi.innerText=gridsearch.leicount;
+            
+            
+            if (gridsearch.leicount > 0 ){
+                
+                gridsearch.Gezi.innerText=gridsearch.leicount;               //??bug---有了判断不了胜利,没有展开后没有数字
             }
             
         }
@@ -300,7 +304,8 @@ function checkAllClear(grid){
         let gridrow=grid[row];
         for (let col=0; col < gridrow.length;col++ ){
             let gezi1=gridrow[col];
-            if (gezi1.leicount !== -1 && !gezi1.clear){
+            if (gezi1.leicount !== -1 && !gezi1.clear  ){
+                console.log([row,col],false);
                 return false;
             }
 
