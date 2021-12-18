@@ -14,7 +14,7 @@ function timer() {
  }
  
  n_sec++;
- var time =  str_sec;
+ var time = "用时:"+ str_sec;
  ele_timer.value = time;
  
  
@@ -45,6 +45,38 @@ function chushixiange(grid,NumRows,NumCols){
 
 }
 
+
+function shengyuleishu(grid,NumRows,NumCols){              //总雷数
+    a=0;
+    for (i=0 ; i < NumRows ;i++){
+        for(j=0 ; j< NumCols ;j++){
+            let yisilei=grid[i][j];
+            
+            if (yisilei.truelei){
+                a+=1;
+            }
+
+        }
+    }
+    for (i=0 ; i < NumRows ;i++){
+        for(j=0 ; j< NumCols ;j++){
+            grid[i][j].shengyulei=a;
+        }
+    }
+
+    console.log("a",a);
+    return a;
+}
+
+
+
+function shengyulei(grid){
+    let shengyuleicount=document.getElementById("shengyuleishu");
+    let yulei=grid[i][j].shengyulei;
+    shengyuleicount.innerText=("剩余雷数"+yulei);
+    
+
+}
 
 
 function chushi(){
@@ -132,7 +164,8 @@ function nanduxuanzeEl(){
 function renderBoard(NumRows,NumCols,grid){                               //行数，列数，初始化的棋盘
     
     let boardElement=document.querySelector("#board");//扫雷棋盘
-    
+
+
     for (let i=0; i < NumRows; i++){                
         let trElement=document.createElement("tr"); 
         
@@ -149,27 +182,49 @@ function renderBoard(NumRows,NumCols,grid){                               //行�
             let a=0
              
             Gezi.addEventListener("contextmenu",(e)=>{
-                if ((a%2)===0 && !grid[i][j].clear){
+                if ((a%2)===0 && !grid[i][j].clear  && grid[i][j].shengyulei !==0){
                     Gezi.classList.add("标识");                         //右键标识
                     grid[i][j].biaoshi=true;
                     a+=1;
                     addbiaocount(grid,i,j,NumRows,NumCols);                 //标识同时为周围格的标识数+1
+                    
+                    for (k=0 ; k < NumRows ;k++){                            //显示剩余雷-1
+                        for(z=0 ; z< NumCols ;z++){
+                            grid[k][z].shengyulei-=1;
+                            console.log("剩余雷数",grid[k][z].shengyulei);
 
-                }else if((a%2)===1 && !grid[i][j].clear){
+                        }
+                    }
+
+                }else if((a%2)===1 && !grid[i][j].clear && grid[i][j].shengyulei !==0){
                     Gezi.classList.remove("标识");                        //再次右键取消标识
                     grid[i][j].biaoshi=false;
                     a+=1;
                     removebiaocount(grid,i,j,NumRows,NumCols);                  //-1
+
+                    for (k=0 ; k < NumRows ;k++){                                //显示1
+                        for(z=0 ; z< NumCols ;z++){
+                            grid[k][z].shengyulei+=1;
+                            console.log("剩余雷数",grid[k][z].shengyulei);
+
+                        }
+                    }
+
+
                 }
+                shengyulei(grid);
             })
                 
             
             
+            shengyuleishu(grid,NumRows,NumCols);                                        //剩余雷数
             
+
 
 
             Gezi.addEventListener("click",(e)=> {
                                           //计时器
+                shengyulei(grid);                                          //剩余雷数初始
 
                 if (grid[i][j].leicount===-1){
                     explode(grid,i,j,NumRows,NumCols)
@@ -191,6 +246,7 @@ function renderBoard(NumRows,NumCols,grid){                               //行�
                     explode1(grid,i,j,NumRows,NumCols);
 
                 }
+                
                 checkAllClear(grid);
 
                 
@@ -233,6 +289,7 @@ function Chushihua(NumRows,NumCols,NumLei){
                 biaoshi:false,
                 truelei:false,
                 biaocount:0,
+                shengyulei:0,
 
             }
         

@@ -103,7 +103,18 @@ p{
 
 .timer{
     text-align: center;
-    width: 3em;
+    width: 6em;
     border-color: #e49696;
+    
 }
 
+.剩余雷数{
+    background-color: rgb(240, 240, 240);
+    border-radius: 6px;
+    
+}
+
+.交互界面{
+    display: flex;
+    margin: 10px 0px 0px 0px;
+}
