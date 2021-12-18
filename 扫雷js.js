@@ -1,4 +1,51 @@
 
+var ele_timer = document.getElementById("timer");           //计时器
+var n_sec = 0; //秒
+ 
+//60秒 === 1分
+//60分 === 1小时
+function timer() {
+ return setInterval(function () {
+ 
+ var str_sec = n_sec;
+ 
+ if ( n_sec < 10) {
+  str_sec = "0" + n_sec;
+ }
+ 
+ n_sec++;
+ var time =  str_sec;
+ ele_timer.value = time;
+ 
+ 
+ 
+ }, 1000);
+}
+ 
+
+
+
+function chushixiange(grid,NumRows,NumCols){
+    for (i=0 ; i < NumRows ;i++){
+        for(j=0 ; j< NumCols ;j++){
+            let kongNums= Math.trunc(Math.random()*NumRows*NumCols);
+            let row=Math.trunc(kongNums/NumCols);
+            let col=kongNums%NumCols
+            console.log(kongNums,row,col);
+            if (grid[row][col].leicount===0){
+                searchClearArea(grid,row,col,NumRows,NumCols);
+                return
+            }
+
+
+        }
+    }
+
+
+
+}
+
+
 
 function chushi(){
     let shuaxin=document.querySelector("#刷新");
@@ -15,6 +62,9 @@ function chushi(){
     })
     
 }
+
+
+
 
 
 function nanduxuanzeEl(){
@@ -45,25 +95,33 @@ function nanduxuanzeEl(){
         
     nanduxuanzeEl.append(trEl);
 
-    nandu1.addEventListener("click",(e)=>{
-        
+    nandu1.addEventListener("click",(e)=>{        
+        var n_timer = timer();
         let grid=Chushihua(9,9,10);
         renderBoard(9,9,grid);
+        chushixiange(grid,9,9);
+        nandu1.className=("难度选中");
+        
+            
             
     })
 
     nandu2.addEventListener("click",(e)=>{
-        
+        var n_timer = timer();
         let grid=Chushihua(15,15,25);
         renderBoard(15,15,grid);
-            
+        chushixiange(grid,9,9);
+        nandu2.className=("难度选中");
+
     })
 
     nandu3.addEventListener("click",(e)=>{
-        
+        var n_timer = timer();
         let grid=Chushihua(20,20,50);
         renderBoard(20,20,grid);
-        
+        chushixiange(grid,9,9);
+        nandu3.className=("难度选中");
+
     })
 }
 
@@ -91,13 +149,13 @@ function renderBoard(NumRows,NumCols,grid){                               //行�
             let a=0
              
             Gezi.addEventListener("contextmenu",(e)=>{
-                if ((a%2)===0){
+                if ((a%2)===0 && !grid[i][j].clear){
                     Gezi.classList.add("标识");                         //右键标识
                     grid[i][j].biaoshi=true;
                     a+=1;
                     addbiaocount(grid,i,j,NumRows,NumCols);                 //标识同时为周围格的标识数+1
 
-                }else if((a%2)===1){
+                }else if((a%2)===1 && !grid[i][j].clear){
                     Gezi.classList.remove("标识");                        //再次右键取消标识
                     grid[i][j].biaoshi=false;
                     a+=1;
@@ -111,6 +169,7 @@ function renderBoard(NumRows,NumCols,grid){                               //行�
 
 
             Gezi.addEventListener("click",(e)=> {
+                                          //计时器
 
                 if (grid[i][j].leicount===-1){
                     explode(grid,i,j,NumRows,NumCols)
@@ -161,6 +220,7 @@ const directions=[
 
 
 function Chushihua(NumRows,NumCols,NumLei){
+    
     let grid=new Array(NumRows);              //列表
     
     for (let i=0; i < NumRows; i++) {
@@ -324,6 +384,7 @@ function checkAllClear(grid){
         }
     }
     alert("YOU WIN!");
+
     return true;
     
 }
@@ -369,9 +430,12 @@ function explode(grid,row,col,NumRows,NumCols){
             }
         }
     }
+    let xiaolian=document.querySelector("#xiaolian");
+    xiaolian.classList.remove("笑脸");
     alert("YOU LOSE!!!");
 
 }
 
 nanduxuanzeEl();
+
 chushi();

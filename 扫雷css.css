@@ -13,6 +13,7 @@ body {
     justify-content: center;
     margin: 0;    
     flex-direction: column;
+    background-color: rgb(185, 185, 184);
 }
 
 p{
@@ -49,32 +50,60 @@ p{
 
 .Gezi.雷.explode{
     background-color:red;
+    background:url(爆炸.gif);    
+    background-size:contain;
+    
 }
 
 .Gezi.雷{
     background-color: sandybrown;
+    background:url(雷.png);    
+    background-size: cover;
 }
 
 .Gezi.雷.成功{
     background-color: seagreen;
+    
 }
 
 
 .难度{
     height: 1em;
-    text-decoration: underline;
-    padding: 20px 10px;
+    border-width: 4px;
+    margin: 0px 10px 20px 10px;
     user-select: none;
+    border-style: outset;
+    border-color: #e0e0e0;
     
+}
+
+.难度选中{
+    height: 1em;
+    
+    margin: 0px 10px 20px 10px;
+    user-select: none;
+    border-color: #dfdcdc;
+    border-width: 4px;
+    border-style: inset;
 }
 
 .初始化{
     user-select: none;
     margin-top: 0.5em;
-    background-color: #f1baba;
+    background-color: #f9f9b0;
     border-radius: 9px;
+    
 }
 
 .标识{
     background-color: blue;
+    background:url(旗子.png);
+    background-size: cover;
 }
+
+.timer{
+    text-align: center;
+    width: 3em;
+    border-color: #e49696;
+}
+
