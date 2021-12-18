@@ -487,11 +487,12 @@ function explode(grid,row,col,NumRows,NumCols){
             }
         }
     }
-    let xiaolian=document.querySelector("#xiaolian");
-    xiaolian.classList.remove("笑脸");
+    
     alert("YOU LOSE!!!");
 
 }
+
+
 
 nanduxuanzeEl();
 
