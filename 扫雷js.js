@@ -79,20 +79,31 @@ function shengyulei(grid){
 }
 
 
+function hasClass (ele, className) {
+    var reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
+    return reg.test(ele.className)
+  }
+
+
+
 function chushi(){
+    
     let shuaxin=document.querySelector("#刷新");
     let tr=document.createElement("tr");
     let td=document.createElement("td");
     let Shuaxin=document.createElement("div");
-    Shuaxin.className=("刷新div");
+    Shuaxin.classList.add("刷新div");
+    
     Shuaxin.innerText=("初始化");                           //初始化按键
     td.append(Shuaxin);
     tr.append(td);
     shuaxin.append(tr);
     Shuaxin.addEventListener("click",(e)=>{
+        
+        
         location.reload();
     })
-    
+        
 }
 
 
@@ -100,6 +111,12 @@ function chushi(){
 
 
 function nanduxuanzeEl(){
+
+    
+    
+
+
+
     let nanduxuanzeEl=document.querySelector("#nanduxuanze");
     let trEl=document.createElement("tr");
         
@@ -127,33 +144,42 @@ function nanduxuanzeEl(){
         
     nanduxuanzeEl.append(trEl);
 
+    b=1;
+
     nandu1.addEventListener("click",(e)=>{        
-        var n_timer = timer();
-        let grid=Chushihua(9,9,10);
-        renderBoard(9,9,grid);
-        chushixiange(grid,9,9);
-        nandu1.className=("难度选中");
-        
+        if(b)  {  
+            var n_timer = timer();
+            let grid=Chushihua(9,9,10);
+            renderBoard(9,9,grid);
+            chushixiange(grid,9,9);
+            nandu1.className=("难度选中");
+            b=0;
+            console.log("a",b);
+        }
             
             
     })
 
     nandu2.addEventListener("click",(e)=>{
-        var n_timer = timer();
-        let grid=Chushihua(15,15,25);
-        renderBoard(15,15,grid);
-        chushixiange(grid,9,9);
-        nandu2.className=("难度选中");
-
+        if(b)    {    
+            var n_timer = timer();
+            let grid=Chushihua(15,15,25);
+            renderBoard(15,15,grid);
+            chushixiange(grid,9,9);
+            nandu2.className=("难度选中");
+            b=0;
+        }
     })
 
     nandu3.addEventListener("click",(e)=>{
-        var n_timer = timer();
-        let grid=Chushihua(20,20,50);
-        renderBoard(20,20,grid);
-        chushixiange(grid,9,9);
-        nandu3.className=("难度选中");
-
+        if(b) {
+            var n_timer = timer();
+            let grid=Chushihua(20,20,50);
+            renderBoard(20,20,grid);
+            chushixiange(grid,9,9);
+            nandu3.className=("难度选中");
+            b=0;
+        }
     })
 }
 
